@@ -10,6 +10,8 @@ namespace ImageSearchSystem
 
         private string sourceFolderPath;
 
+        private ImageSize imageSize;
+
         public SearchForm(ISearchImageService searchImageService)
         {
             _searchImageService = searchImageService;
@@ -24,7 +26,7 @@ namespace ImageSearchSystem
             switch (_searchCondition)
             {
                 case SearchParameter.ImageSize:
-                    image = _searchImageService.FindImageByFileSize(SearchValueTextBox.Text);
+                    image = _searchImageService.FindImageByFileSize(imageSize);
                     break;
                 case SearchParameter.ImageResolution:
                     image = _searchImageService.FindImageByFileResolution(WidthTextBox.Text, HeightTextBox.Text);
@@ -75,11 +77,11 @@ namespace ImageSearchSystem
             if (ImageSizeRadioButton.Checked)
             {
                 _searchCondition = SearchParameter.ImageSize;
-                OneSearchParameterGroupBox.Visible = true;
+                ImageSizeGroupBox.Visible = true;
             }
             else
             {
-                OneSearchParameterGroupBox.Visible = false;
+                ImageSizeGroupBox.Visible = false;
             }
         }
 
@@ -114,14 +116,14 @@ namespace ImageSearchSystem
             if (NumberOfFileColorsRadioButton.Checked)
             {
                 _searchCondition = SearchParameter.NumberOfColors;
-                OneSearchParameterGroupBox.Visible = true;
+                NumberOfColorsGroupBox.Visible = true;
             }
             else
             {
-                OneSearchParameterGroupBox.Visible = false;
+                NumberOfColorsGroupBox.Visible = false;
             }
         }
-
+        
         private void SelectFolderButton_Click(object sender, EventArgs e)
         {
             var folderDialog = new FolderBrowserDialog();
@@ -133,6 +135,21 @@ namespace ImageSearchSystem
                 CurrentSourceFolderLabel.Text += " " + sourceFolderPath;
                 _searchImageService.UpoladImages(sourceFolderPath);
             }
+        }
+
+        private void BIgImageRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            imageSize = ImageSize.Big;
+        }
+
+        private void MediumPictureSizeRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            imageSize = ImageSize.Medium;
+        }
+
+        private void SmallPictureSizeRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            imageSize = ImageSize.Small;
         }
     }
 }

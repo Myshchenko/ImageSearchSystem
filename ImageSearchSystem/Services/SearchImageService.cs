@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ImageSearchSystem.Models;
+using Microsoft.Extensions.Configuration;
 using System.Drawing.Imaging;
 
 namespace ImageSearchSystem.Services
@@ -7,7 +8,7 @@ namespace ImageSearchSystem.Services
     {
         public void UpoladImages(string filePath);
 
-        public Image? FindImageByFileSize(string parameter);
+        public Image? FindImageByFileSize(ImageSize parameter);
 
         public Image? FindImageByFileResolution(string width, string height);
 
@@ -54,29 +55,41 @@ namespace ImageSearchSystem.Services
             }
         }
 
-        public Image? FindImageByFileSize(string parameter)
+        public Image? FindImageByFileSize(ImageSize parameter)
         {
-            if (string.IsNullOrEmpty(parameter) || !parameter.All(Char.IsDigit))
-            {
-                return null;
-            }
-
             var filePaths = GetFilePaths();
 
             foreach (var path in filePaths)
             {
                 byte[] byteData = File.ReadAllBytes(path);
 
-                if (byteData.Length == Convert.ToInt64(parameter))
+                float mb = (byteData.Length / 1024f) / 1024f;
+
+                switch (parameter)
                 {
-                    using (MemoryStream ms = new MemoryStream(byteData))
-                    {
-                        return Image.FromStream(ms);
-                    }
+                    case ImageSize.Big:
+                        if (mb > 3) return ConvertBytesToImage(byteData);
+                        break;
+                    case ImageSize.Medium:
+                        if (mb >= 1 && mb <=3) return ConvertBytesToImage(byteData);
+                        break;
+                    case ImageSize.Small:
+                        if (mb < 0.5) return ConvertBytesToImage(byteData);
+                        break;
+                    default:
+                        return null;
                 }
             }
 
             return null;
+        }
+
+        private Image ConvertBytesToImage(byte[] byteData)
+        {
+            using (MemoryStream ms = new MemoryStream(byteData))
+            {
+                return Image.FromStream(ms);
+            }
         }
 
         public Image? FindImageByFileResolution(string width, string height)
