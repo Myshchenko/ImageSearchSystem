@@ -14,7 +14,7 @@ namespace ImageSearchSystem.Services
 
         public Image? FindImageByFileExtension(string fileExtension);
 
-        public Image? FindImageByNumberOfColors(string colors);
+        public Image? FindImageByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors);
     }
 
     public class SearchImageService : ISearchImageService
@@ -124,25 +124,25 @@ namespace ImageSearchSystem.Services
             return _imagesAsImages.FirstOrDefault(x => x.RawFormat.Equals(imageFormat));
         }
 
-        public Image? FindImageByNumberOfColors(string colors)
+        public Image? FindImageByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors)
         {
-            if(string.IsNullOrEmpty(colors))
-            {
-                return null;
-            }
-
-            if (!colors.All(Char.IsDigit))
-            {
-                return null;
-            }
-
             foreach (var item in _imagesAsImages)
             {
                 var color = GetUniqueColorCount(item);
 
-                if(color == Convert.ToInt32(colors))
+                switch (possibleNumberOfColors)
                 {
-                    return item;
+                    case PossibleNumberOfColors.MoreThan5000:
+                        if (color > 5000) return item;
+                        break;
+                    case PossibleNumberOfColors.From1000To5000:
+                        if (color >= 1000 && color <= 5000) return item;
+                        break;
+                    case PossibleNumberOfColors.UpTo1000:
+                        if (color < 1000) return item;
+                        break;
+                    default:
+                        return null;
                 }
             }
 

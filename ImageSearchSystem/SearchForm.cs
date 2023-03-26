@@ -10,7 +10,8 @@ namespace ImageSearchSystem
 
         private string sourceFolderPath;
 
-        private ImageSize imageSize;
+        private ImageSize _imageSize;
+        private PossibleNumberOfColors _possibleNumberOfColors;
 
         public SearchForm(ISearchImageService searchImageService)
         {
@@ -21,12 +22,18 @@ namespace ImageSearchSystem
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(sourceFolderPath))
+            {
+                MessageBox.Show("Select source folder.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Image? image;
 
             switch (_searchCondition)
             {
                 case SearchParameter.ImageSize:
-                    image = _searchImageService.FindImageByFileSize(imageSize);
+                    image = _searchImageService.FindImageByFileSize(_imageSize);
                     break;
                 case SearchParameter.ImageResolution:
                     image = _searchImageService.FindImageByFileResolution(WidthTextBox.Text, HeightTextBox.Text);
@@ -35,7 +42,7 @@ namespace ImageSearchSystem
                     image = _searchImageService.FindImageByFileExtension(SearchValueTextBox.Text);
                     break ;
                 case SearchParameter.NumberOfColors:
-                    image = _searchImageService.FindImageByNumberOfColors(SearchValueTextBox.Text);
+                    image = _searchImageService.FindImageByNumberOfColors(_possibleNumberOfColors);
                     break;
                 default:
                     image = null;
@@ -139,17 +146,32 @@ namespace ImageSearchSystem
 
         private void BIgImageRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            imageSize = ImageSize.Big;
+            _imageSize = ImageSize.Big;
         }
 
         private void MediumPictureSizeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            imageSize = ImageSize.Medium;
+            _imageSize = ImageSize.Medium;
         }
 
         private void SmallPictureSizeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            imageSize = ImageSize.Small;
+            _imageSize = ImageSize.Small;
+        }
+
+        private void MoreThan5000RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            _possibleNumberOfColors = PossibleNumberOfColors.MoreThan5000;
+        }
+
+        private void From1000To5000RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            _possibleNumberOfColors = PossibleNumberOfColors.From1000To5000;
+        }
+
+        private void UpTo1000RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            _possibleNumberOfColors = PossibleNumberOfColors.UpTo1000;
         }
     }
 }
