@@ -40,13 +40,13 @@
             this.HeightTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.ImageSizeGroupBox = new System.Windows.Forms.GroupBox();
+            this.SmallPictureSizeRadioButton = new System.Windows.Forms.RadioButton();
+            this.MediumPictureSizeRadioButton = new System.Windows.Forms.RadioButton();
+            this.BIgImageRadioButton = new System.Windows.Forms.RadioButton();
             this.NumberOfColorsGroupBox = new System.Windows.Forms.GroupBox();
             this.UpTo1000RadioButton = new System.Windows.Forms.RadioButton();
             this.From1000To5000RadioButton = new System.Windows.Forms.RadioButton();
             this.MoreThan5000RadioButton = new System.Windows.Forms.RadioButton();
-            this.SmallPictureSizeRadioButton = new System.Windows.Forms.RadioButton();
-            this.MediumPictureSizeRadioButton = new System.Windows.Forms.RadioButton();
-            this.BIgImageRadioButton = new System.Windows.Forms.RadioButton();
             this.FoundImagePictureBox = new System.Windows.Forms.PictureBox();
             this.FileFormatRadioButton = new System.Windows.Forms.RadioButton();
             this.NumberOfFileColorsRadioButton = new System.Windows.Forms.RadioButton();
@@ -55,6 +55,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CurrentSourceFolderLabel = new System.Windows.Forms.Label();
+            this.PreviousPictureButton = new System.Windows.Forms.Button();
+            this.NextPictureButton = new System.Windows.Forms.Button();
             this.OneSearchParameterGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.ImageSizeGroupBox.SuspendLayout();
@@ -180,6 +182,42 @@
             this.ImageSizeGroupBox.TabStop = false;
             this.ImageSizeGroupBox.Visible = false;
             // 
+            // SmallPictureSizeRadioButton
+            // 
+            this.SmallPictureSizeRadioButton.AutoSize = true;
+            this.SmallPictureSizeRadioButton.Location = new System.Drawing.Point(36, 88);
+            this.SmallPictureSizeRadioButton.Name = "SmallPictureSizeRadioButton";
+            this.SmallPictureSizeRadioButton.Size = new System.Drawing.Size(140, 24);
+            this.SmallPictureSizeRadioButton.TabIndex = 25;
+            this.SmallPictureSizeRadioButton.TabStop = true;
+            this.SmallPictureSizeRadioButton.Text = "Small (< 0,5 mb)";
+            this.SmallPictureSizeRadioButton.UseVisualStyleBackColor = true;
+            this.SmallPictureSizeRadioButton.CheckedChanged += new System.EventHandler(this.SmallPictureSizeRadioButton_CheckedChanged);
+            // 
+            // MediumPictureSizeRadioButton
+            // 
+            this.MediumPictureSizeRadioButton.AutoSize = true;
+            this.MediumPictureSizeRadioButton.Location = new System.Drawing.Point(36, 58);
+            this.MediumPictureSizeRadioButton.Name = "MediumPictureSizeRadioButton";
+            this.MediumPictureSizeRadioButton.Size = new System.Drawing.Size(166, 24);
+            this.MediumPictureSizeRadioButton.TabIndex = 24;
+            this.MediumPictureSizeRadioButton.TabStop = true;
+            this.MediumPictureSizeRadioButton.Text = "Medium (0,5 - 3 mb)";
+            this.MediumPictureSizeRadioButton.UseVisualStyleBackColor = true;
+            this.MediumPictureSizeRadioButton.CheckedChanged += new System.EventHandler(this.MediumPictureSizeRadioButton_CheckedChanged);
+            // 
+            // BIgImageRadioButton
+            // 
+            this.BIgImageRadioButton.AutoSize = true;
+            this.BIgImageRadioButton.Location = new System.Drawing.Point(36, 28);
+            this.BIgImageRadioButton.Name = "BIgImageRadioButton";
+            this.BIgImageRadioButton.Size = new System.Drawing.Size(114, 24);
+            this.BIgImageRadioButton.TabIndex = 23;
+            this.BIgImageRadioButton.TabStop = true;
+            this.BIgImageRadioButton.Text = "Big (> 3 mb)";
+            this.BIgImageRadioButton.UseVisualStyleBackColor = true;
+            this.BIgImageRadioButton.CheckedChanged += new System.EventHandler(this.BIgImageRadioButton_CheckedChanged);
+            // 
             // NumberOfColorsGroupBox
             // 
             this.NumberOfColorsGroupBox.Controls.Add(this.UpTo1000RadioButton);
@@ -227,42 +265,6 @@
             this.MoreThan5000RadioButton.Text = "More than 5000";
             this.MoreThan5000RadioButton.UseVisualStyleBackColor = true;
             this.MoreThan5000RadioButton.CheckedChanged += new System.EventHandler(this.MoreThan5000RadioButton_CheckedChanged);
-            // 
-            // SmallPictureSizeRadioButton
-            // 
-            this.SmallPictureSizeRadioButton.AutoSize = true;
-            this.SmallPictureSizeRadioButton.Location = new System.Drawing.Point(36, 88);
-            this.SmallPictureSizeRadioButton.Name = "SmallPictureSizeRadioButton";
-            this.SmallPictureSizeRadioButton.Size = new System.Drawing.Size(140, 24);
-            this.SmallPictureSizeRadioButton.TabIndex = 25;
-            this.SmallPictureSizeRadioButton.TabStop = true;
-            this.SmallPictureSizeRadioButton.Text = "Small (< 0,5 mb)";
-            this.SmallPictureSizeRadioButton.UseVisualStyleBackColor = true;
-            this.SmallPictureSizeRadioButton.CheckedChanged += new System.EventHandler(this.SmallPictureSizeRadioButton_CheckedChanged);
-            // 
-            // MediumPictureSizeRadioButton
-            // 
-            this.MediumPictureSizeRadioButton.AutoSize = true;
-            this.MediumPictureSizeRadioButton.Location = new System.Drawing.Point(36, 58);
-            this.MediumPictureSizeRadioButton.Name = "MediumPictureSizeRadioButton";
-            this.MediumPictureSizeRadioButton.Size = new System.Drawing.Size(166, 24);
-            this.MediumPictureSizeRadioButton.TabIndex = 24;
-            this.MediumPictureSizeRadioButton.TabStop = true;
-            this.MediumPictureSizeRadioButton.Text = "Medium (0,5 - 3 mb)";
-            this.MediumPictureSizeRadioButton.UseVisualStyleBackColor = true;
-            this.MediumPictureSizeRadioButton.CheckedChanged += new System.EventHandler(this.MediumPictureSizeRadioButton_CheckedChanged);
-            // 
-            // BIgImageRadioButton
-            // 
-            this.BIgImageRadioButton.AutoSize = true;
-            this.BIgImageRadioButton.Location = new System.Drawing.Point(36, 28);
-            this.BIgImageRadioButton.Name = "BIgImageRadioButton";
-            this.BIgImageRadioButton.Size = new System.Drawing.Size(114, 24);
-            this.BIgImageRadioButton.TabIndex = 23;
-            this.BIgImageRadioButton.TabStop = true;
-            this.BIgImageRadioButton.Text = "Big (> 3 mb)";
-            this.BIgImageRadioButton.UseVisualStyleBackColor = true;
-            this.BIgImageRadioButton.CheckedChanged += new System.EventHandler(this.BIgImageRadioButton_CheckedChanged);
             // 
             // FoundImagePictureBox
             // 
@@ -349,11 +351,35 @@
             this.CurrentSourceFolderLabel.TabIndex = 23;
             this.CurrentSourceFolderLabel.Text = "Current source folder:";
             // 
+            // PreviousPictureButton
+            // 
+            this.PreviousPictureButton.Location = new System.Drawing.Point(373, 569);
+            this.PreviousPictureButton.Name = "PreviousPictureButton";
+            this.PreviousPictureButton.Size = new System.Drawing.Size(94, 29);
+            this.PreviousPictureButton.TabIndex = 27;
+            this.PreviousPictureButton.Text = "Previous";
+            this.PreviousPictureButton.UseVisualStyleBackColor = true;
+            this.PreviousPictureButton.Visible = false;
+            this.PreviousPictureButton.Click += new System.EventHandler(this.PreviousPictureButton_Click);
+            // 
+            // NextPictureButton
+            // 
+            this.NextPictureButton.Location = new System.Drawing.Point(795, 569);
+            this.NextPictureButton.Name = "NextPictureButton";
+            this.NextPictureButton.Size = new System.Drawing.Size(94, 29);
+            this.NextPictureButton.TabIndex = 28;
+            this.NextPictureButton.Text = "Next";
+            this.NextPictureButton.UseVisualStyleBackColor = true;
+            this.NextPictureButton.Visible = false;
+            this.NextPictureButton.Click += new System.EventHandler(this.NextPictureButton_Click);
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 576);
+            this.ClientSize = new System.Drawing.Size(901, 610);
+            this.Controls.Add(this.NextPictureButton);
+            this.Controls.Add(this.PreviousPictureButton);
             this.Controls.Add(this.NumberOfColorsGroupBox);
             this.Controls.Add(this.ImageSizeGroupBox);
             this.Controls.Add(this.groupBox1);
@@ -418,5 +444,7 @@
         private RadioButton UpTo1000RadioButton;
         private RadioButton From1000To5000RadioButton;
         private RadioButton MoreThan5000RadioButton;
+        private Button PreviousPictureButton;
+        private Button NextPictureButton;
     }
 }

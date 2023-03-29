@@ -8,13 +8,13 @@ namespace ImageSearchSystem.Services
     {
         public void UpoladImages(string filePath);
 
-        public Image? FindImageByFileSize(ImageSize parameter);
+        public List<Image> FindImagesByFileSize(ImageSize parameter);
 
-        public Image? FindImageByFileResolution(string width, string height);
+        public List<Image> FindImagesByFileResolution(string width, string height);
 
-        public Image? FindImageByFileExtension(string fileExtension);
+        public List<Image> FindImagesByFileExtension(string fileExtension);
 
-        public Image? FindImageByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors);
+        public List<Image> FindImagesByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors);
     }
 
     public class SearchImageService : ISearchImageService
@@ -55,9 +55,11 @@ namespace ImageSearchSystem.Services
             }
         }
 
-        public Image? FindImageByFileSize(ImageSize parameter)
+        public List<Image> FindImagesByFileSize(ImageSize parameter)
         {
             var filePaths = GetFilePaths();
+
+            var images = new List<Image>();
 
             foreach (var path in filePaths)
             {
@@ -68,20 +70,20 @@ namespace ImageSearchSystem.Services
                 switch (parameter)
                 {
                     case ImageSize.Big:
-                        if (mb > 3) return ConvertBytesToImage(byteData);
+                        if (mb > 3) images.Add(ConvertBytesToImage(byteData));
                         break;
                     case ImageSize.Medium:
-                        if (mb >= 1 && mb <=3) return ConvertBytesToImage(byteData);
+                        if (mb >= 1 && mb <=3) images.Add(ConvertBytesToImage(byteData));
                         break;
                     case ImageSize.Small:
-                        if (mb < 0.5) return ConvertBytesToImage(byteData);
+                        if (mb < 0.5) images.Add(ConvertBytesToImage(byteData));
                         break;
                     default:
-                        return null;
+                        break;
                 }
             }
 
-            return null;
+            return images;
         }
 
         private Image ConvertBytesToImage(byte[] byteData)
@@ -92,40 +94,42 @@ namespace ImageSearchSystem.Services
             }
         }
 
-        public Image? FindImageByFileResolution(string width, string height)
+        public List<Image> FindImagesByFileResolution(string width, string height)
         {
-            if(string.IsNullOrEmpty(width) || string.IsNullOrEmpty(height))
+            if (string.IsNullOrEmpty(width) || string.IsNullOrEmpty(height))
             {
-                return null;
+                return new List<Image>();
             }
 
             if(!width.All(Char.IsDigit) || !height.All(Char.IsDigit))
             {
-                return null;
+                return new List<Image>();
             }
 
-            return _imagesAsImages.FirstOrDefault(image => image.Height == Convert.ToInt32(height) && image.Width == Convert.ToInt32(width));
+            return _imagesAsImages.Where(image => image.Height == Convert.ToInt32(height) && image.Width == Convert.ToInt32(width)).ToList();
         }
 
-        public Image? FindImageByFileExtension(string fileExtension)
+        public List<Image> FindImagesByFileExtension(string fileExtension)
         {
             if (string.IsNullOrEmpty(fileExtension))
             {
-                return null;
+                return new List<Image>();
             }
 
             var imageFormat = ParseImageFormat(new String(fileExtension.Where(Char.IsLetter).ToArray()));
 
             if (imageFormat == null)
             {
-                return null;
+                return new List<Image>();
             }
 
-            return _imagesAsImages.FirstOrDefault(x => x.RawFormat.Equals(imageFormat));
+            return _imagesAsImages.Where(x => x.RawFormat.Equals(imageFormat)).ToList();
         }
 
-        public Image? FindImageByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors)
+        public List<Image> FindImagesByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors)
         {
+            var images = new List<Image>();
+
             foreach (var item in _imagesAsImages)
             {
                 var color = GetUniqueColorCount(item);
@@ -133,20 +137,20 @@ namespace ImageSearchSystem.Services
                 switch (possibleNumberOfColors)
                 {
                     case PossibleNumberOfColors.MoreThan5000:
-                        if (color > 5000) return item;
+                        if (color > 5000) images.Add(item);
                         break;
                     case PossibleNumberOfColors.From1000To5000:
-                        if (color >= 1000 && color <= 5000) return item;
+                        if (color >= 1000 && color <= 5000) images.Add(item);
                         break;
                     case PossibleNumberOfColors.UpTo1000:
-                        if (color < 1000) return item;
+                        if (color < 1000) images.Add(item);
                         break;
                     default:
-                        return null;
+                        break;
                 }
             }
 
-            return null;
+            return images;
         }
 
         private ImageFormat? ParseImageFormat(string stringImageFormat)

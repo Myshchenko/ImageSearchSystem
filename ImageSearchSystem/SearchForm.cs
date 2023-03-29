@@ -13,6 +13,10 @@ namespace ImageSearchSystem
         private ImageSize _imageSize;
         private PossibleNumberOfColors _possibleNumberOfColors;
 
+        int nTotalNumber = 0;
+        int nCurrentItem = 0;
+        List<Image> images = new List<Image>();
+
         public SearchForm(ISearchImageService searchImageService)
         {
             _searchImageService = searchImageService;
@@ -33,23 +37,23 @@ namespace ImageSearchSystem
             switch (_searchCondition)
             {
                 case SearchParameter.ImageSize:
-                    image = _searchImageService.FindImageByFileSize(_imageSize);
+                    images = _searchImageService.FindImagesByFileSize(_imageSize);
                     break;
                 case SearchParameter.ImageResolution:
-                    image = _searchImageService.FindImageByFileResolution(WidthTextBox.Text, HeightTextBox.Text);
+                    images = _searchImageService.FindImagesByFileResolution(WidthTextBox.Text, HeightTextBox.Text);
                     break;
                 case SearchParameter.FileFormat:
-                    image = _searchImageService.FindImageByFileExtension(SearchValueTextBox.Text);
+                    images = _searchImageService.FindImagesByFileExtension(SearchValueTextBox.Text);
                     break ;
                 case SearchParameter.NumberOfColors:
-                    image = _searchImageService.FindImageByNumberOfColors(_possibleNumberOfColors);
+                    images = _searchImageService.FindImagesByNumberOfColors(_possibleNumberOfColors);
                     break;
                 default:
                     image = null;
                     break;
             }
 
-            if(image == null)
+            if(images == null || images.Count == 0)
             {
                 FoundImagePictureBox.Visible = false;
                 ImageLabel.Visible = false;
@@ -58,10 +62,13 @@ namespace ImageSearchSystem
             }
 
             FoundImagePictureBox.Visible = true;
-            FoundImagePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
-            FoundImagePictureBox.Image = image;
+            PreviousPictureButton.Visible = true;
+            NextPictureButton.Visible = true;
             ImageLabel.Visible = true;
 
+            FoundImagePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            FoundImagePictureBox.Image = images[0];
+            nTotalNumber = images.Count;
             Controls.Add(FoundImagePictureBox);
         }
 
@@ -172,6 +179,34 @@ namespace ImageSearchSystem
         private void UpTo1000RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             _possibleNumberOfColors = PossibleNumberOfColors.UpTo1000;
+        }
+
+        private void PreviousPictureButton_Click(object sender, EventArgs e)
+        {
+            nCurrentItem--;
+
+            if (nCurrentItem < 0)
+            {
+                nCurrentItem = 0;
+            }
+            else if (nCurrentItem < nTotalNumber)
+            {
+                FoundImagePictureBox.Image = images[nCurrentItem];
+            }         
+        }
+
+        private void NextPictureButton_Click(object sender, EventArgs e)
+        {
+            nCurrentItem++;
+
+            if (nCurrentItem > nTotalNumber)
+            {
+                nCurrentItem = nTotalNumber;
+            }
+            else if (nCurrentItem < nTotalNumber)
+            {
+                FoundImagePictureBox.Image = images[nCurrentItem];
+            }     
         }
     }
 }
