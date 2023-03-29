@@ -1,5 +1,6 @@
 using ImageSearchSystem.Models;
 using ImageSearchSystem.Services;
+using System.Windows.Forms;
 
 namespace ImageSearchSystem
 {
@@ -66,7 +67,7 @@ namespace ImageSearchSystem
             NextPictureButton.Visible = true;
             ImageLabel.Visible = true;
 
-            FoundImagePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            FoundImagePictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             FoundImagePictureBox.Image = images[0];
             nTotalNumber = images.Count;
             Controls.Add(FoundImagePictureBox);
