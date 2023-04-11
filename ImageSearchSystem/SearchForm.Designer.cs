@@ -34,11 +34,6 @@
             this.ImageResolutionRadioButton = new System.Windows.Forms.RadioButton();
             this.SearchValueTextBox = new System.Windows.Forms.TextBox();
             this.OneSearchParameterGroupBox = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.HeightTextBox = new System.Windows.Forms.TextBox();
-            this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.ImageSizeGroupBox = new System.Windows.Forms.GroupBox();
             this.SmallPictureSizeRadioButton = new System.Windows.Forms.RadioButton();
             this.MediumPictureSizeRadioButton = new System.Windows.Forms.RadioButton();
@@ -57,12 +52,16 @@
             this.CurrentSourceFolderLabel = new System.Windows.Forms.Label();
             this.PreviousPictureButton = new System.Windows.Forms.Button();
             this.NextPictureButton = new System.Windows.Forms.Button();
+            this.ImageResolutionGroupBox = new System.Windows.Forms.GroupBox();
+            this.SmallImageResolutionRadioButton = new System.Windows.Forms.RadioButton();
+            this.MediumImageResolutionRadioButton = new System.Windows.Forms.RadioButton();
+            this.BigImageResolutionRadioButton = new System.Windows.Forms.RadioButton();
             this.OneSearchParameterGroupBox.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.ImageSizeGroupBox.SuspendLayout();
             this.NumberOfColorsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FoundImagePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.ImageResolutionGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // SearchButton
@@ -125,57 +124,12 @@
             this.OneSearchParameterGroupBox.TabStop = false;
             this.OneSearchParameterGroupBox.Visible = false;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.HeightTextBox);
-            this.groupBox2.Controls.Add(this.WidthTextBox);
-            this.groupBox2.Location = new System.Drawing.Point(13, 332);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(250, 125);
-            this.groupBox2.TabIndex = 14;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Height:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 20);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Width:";
-            // 
-            // HeightTextBox
-            // 
-            this.HeightTextBox.Location = new System.Drawing.Point(96, 81);
-            this.HeightTextBox.Name = "HeightTextBox";
-            this.HeightTextBox.Size = new System.Drawing.Size(125, 27);
-            this.HeightTextBox.TabIndex = 14;
-            // 
-            // WidthTextBox
-            // 
-            this.WidthTextBox.Location = new System.Drawing.Point(96, 26);
-            this.WidthTextBox.Name = "WidthTextBox";
-            this.WidthTextBox.Size = new System.Drawing.Size(125, 27);
-            this.WidthTextBox.TabIndex = 13;
-            // 
             // ImageSizeGroupBox
             // 
             this.ImageSizeGroupBox.Controls.Add(this.SmallPictureSizeRadioButton);
             this.ImageSizeGroupBox.Controls.Add(this.MediumPictureSizeRadioButton);
             this.ImageSizeGroupBox.Controls.Add(this.BIgImageRadioButton);
-            this.ImageSizeGroupBox.Location = new System.Drawing.Point(12, 332);
+            this.ImageSizeGroupBox.Location = new System.Drawing.Point(26, 348);
             this.ImageSizeGroupBox.Name = "ImageSizeGroupBox";
             this.ImageSizeGroupBox.Size = new System.Drawing.Size(250, 125);
             this.ImageSizeGroupBox.TabIndex = 19;
@@ -223,7 +177,7 @@
             this.NumberOfColorsGroupBox.Controls.Add(this.UpTo1000RadioButton);
             this.NumberOfColorsGroupBox.Controls.Add(this.From1000To5000RadioButton);
             this.NumberOfColorsGroupBox.Controls.Add(this.MoreThan5000RadioButton);
-            this.NumberOfColorsGroupBox.Location = new System.Drawing.Point(12, 332);
+            this.NumberOfColorsGroupBox.Location = new System.Drawing.Point(20, 348);
             this.NumberOfColorsGroupBox.Name = "NumberOfColorsGroupBox";
             this.NumberOfColorsGroupBox.Size = new System.Drawing.Size(250, 125);
             this.NumberOfColorsGroupBox.TabIndex = 26;
@@ -373,11 +327,60 @@
             this.NextPictureButton.Visible = false;
             this.NextPictureButton.Click += new System.EventHandler(this.NextPictureButton_Click);
             // 
+            // ImageResolutionGroupBox
+            // 
+            this.ImageResolutionGroupBox.Controls.Add(this.SmallImageResolutionRadioButton);
+            this.ImageResolutionGroupBox.Controls.Add(this.MediumImageResolutionRadioButton);
+            this.ImageResolutionGroupBox.Controls.Add(this.BigImageResolutionRadioButton);
+            this.ImageResolutionGroupBox.Location = new System.Drawing.Point(20, 342);
+            this.ImageResolutionGroupBox.Name = "ImageResolutionGroupBox";
+            this.ImageResolutionGroupBox.Size = new System.Drawing.Size(340, 125);
+            this.ImageResolutionGroupBox.TabIndex = 26;
+            this.ImageResolutionGroupBox.TabStop = false;
+            this.ImageResolutionGroupBox.Visible = false;
+            // 
+            // SmallImageResolutionRadioButton
+            // 
+            this.SmallImageResolutionRadioButton.AutoSize = true;
+            this.SmallImageResolutionRadioButton.Location = new System.Drawing.Point(36, 88);
+            this.SmallImageResolutionRadioButton.Name = "SmallImageResolutionRadioButton";
+            this.SmallImageResolutionRadioButton.Size = new System.Drawing.Size(190, 24);
+            this.SmallImageResolutionRadioButton.TabIndex = 25;
+            this.SmallImageResolutionRadioButton.TabStop = true;
+            this.SmallImageResolutionRadioButton.Text = "Icons (256x256 and less)";
+            this.SmallImageResolutionRadioButton.UseVisualStyleBackColor = true;
+            this.SmallImageResolutionRadioButton.CheckedChanged += new System.EventHandler(this.SmallImageResolutionRadioButton_CheckedChanged);
+            // 
+            // MediumImageResolutionRadioButton
+            // 
+            this.MediumImageResolutionRadioButton.AutoSize = true;
+            this.MediumImageResolutionRadioButton.Location = new System.Drawing.Point(36, 58);
+            this.MediumImageResolutionRadioButton.Name = "MediumImageResolutionRadioButton";
+            this.MediumImageResolutionRadioButton.Size = new System.Drawing.Size(267, 24);
+            this.MediumImageResolutionRadioButton.TabIndex = 24;
+            this.MediumImageResolutionRadioButton.TabStop = true;
+            this.MediumImageResolutionRadioButton.Text = "Medium (from 257x257 to 999x999)";
+            this.MediumImageResolutionRadioButton.UseVisualStyleBackColor = true;
+            this.MediumImageResolutionRadioButton.CheckedChanged += new System.EventHandler(this.MediumImageResolutionRadioButton_CheckedChanged);
+            // 
+            // BigImageResolutionRadioButton
+            // 
+            this.BigImageResolutionRadioButton.AutoSize = true;
+            this.BigImageResolutionRadioButton.Location = new System.Drawing.Point(36, 28);
+            this.BigImageResolutionRadioButton.Name = "BigImageResolutionRadioButton";
+            this.BigImageResolutionRadioButton.Size = new System.Drawing.Size(173, 24);
+            this.BigImageResolutionRadioButton.TabIndex = 23;
+            this.BigImageResolutionRadioButton.TabStop = true;
+            this.BigImageResolutionRadioButton.Text = "Big (from 1000x1000)";
+            this.BigImageResolutionRadioButton.UseVisualStyleBackColor = true;
+            this.BigImageResolutionRadioButton.CheckedChanged += new System.EventHandler(this.BigImageResolutionRadioButton_CheckedChanged);
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 610);
+            this.Controls.Add(this.ImageResolutionGroupBox);
             this.Controls.Add(this.NextPictureButton);
             this.Controls.Add(this.PreviousPictureButton);
             this.Controls.Add(this.NumberOfColorsGroupBox);
@@ -386,7 +389,6 @@
             this.Controls.Add(this.ImageLabel);
             this.Controls.Add(this.NumberOfFileColorsRadioButton);
             this.Controls.Add(this.FileFormatRadioButton);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.FoundImagePictureBox);
             this.Controls.Add(this.OneSearchParameterGroupBox);
             this.Controls.Add(this.ImageResolutionRadioButton);
@@ -401,8 +403,6 @@
             this.Text = "Search system";
             this.OneSearchParameterGroupBox.ResumeLayout(false);
             this.OneSearchParameterGroupBox.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ImageSizeGroupBox.ResumeLayout(false);
             this.ImageSizeGroupBox.PerformLayout();
             this.NumberOfColorsGroupBox.ResumeLayout(false);
@@ -410,6 +410,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.FoundImagePictureBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.ImageResolutionGroupBox.ResumeLayout(false);
+            this.ImageResolutionGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,14 +425,9 @@
         private RadioButton ImageResolutionRadioButton;
         private TextBox SearchValueTextBox;
         private GroupBox OneSearchParameterGroupBox;
-        private GroupBox groupBox2;
-        private TextBox HeightTextBox;
-        private TextBox WidthTextBox;
         private PictureBox FoundImagePictureBox;
         private RadioButton FileFormatRadioButton;
         private RadioButton NumberOfFileColorsRadioButton;
-        private Label label1;
-        private Label label2;
         private Label ImageLabel;
         private Button SelectFolderButton;
         private Label label3;
@@ -446,5 +443,9 @@
         private RadioButton MoreThan5000RadioButton;
         private Button PreviousPictureButton;
         private Button NextPictureButton;
+        private GroupBox ImageResolutionGroupBox;
+        private RadioButton SmallImageResolutionRadioButton;
+        private RadioButton MediumImageResolutionRadioButton;
+        private RadioButton BigImageResolutionRadioButton;
     }
 }

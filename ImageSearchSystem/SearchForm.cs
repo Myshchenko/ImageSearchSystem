@@ -12,6 +12,7 @@ namespace ImageSearchSystem
         private string sourceFolderPath;
 
         private ImageSize _imageSize;
+        private ImageResolution _imageResolution;
         private PossibleNumberOfColors _possibleNumberOfColors;
 
         int nTotalNumber = 0;
@@ -33,15 +34,13 @@ namespace ImageSearchSystem
                 return;
             }
 
-            Image? image;
-
             switch (_searchCondition)
             {
                 case SearchParameter.ImageSize:
                     images = _searchImageService.FindImagesByFileSize(_imageSize);
                     break;
                 case SearchParameter.ImageResolution:
-                    images = _searchImageService.FindImagesByFileResolution(WidthTextBox.Text, HeightTextBox.Text);
+                    images = _searchImageService.FindImagesByFileResolution(_imageResolution);
                     break;
                 case SearchParameter.FileFormat:
                     images = _searchImageService.FindImagesByFileExtension(SearchValueTextBox.Text);
@@ -50,7 +49,6 @@ namespace ImageSearchSystem
                     images = _searchImageService.FindImagesByNumberOfColors(_possibleNumberOfColors);
                     break;
                 default:
-                    image = null;
                     break;
             }
 
@@ -78,12 +76,12 @@ namespace ImageSearchSystem
             if (ImageResolutionRadioButton.Checked)
             {
                 _searchCondition = SearchParameter.ImageResolution;
-                groupBox2.Visible = true;
+                ImageResolutionGroupBox.Visible = true;
 
             }
             else
             {
-                groupBox2.Visible = false;
+                ImageResolutionGroupBox.Visible = false;
             }
         }
 
@@ -180,6 +178,23 @@ namespace ImageSearchSystem
         private void UpTo1000RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             _possibleNumberOfColors = PossibleNumberOfColors.UpTo1000;
+        }
+
+
+        private void BigImageResolutionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            _imageResolution = ImageResolution.Big;
+        }
+
+
+        private void MediumImageResolutionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            _imageResolution = ImageResolution.Medium;
+        }
+
+        private void SmallImageResolutionRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            _imageResolution = ImageResolution.Small;
         }
 
         private void PreviousPictureButton_Click(object sender, EventArgs e)

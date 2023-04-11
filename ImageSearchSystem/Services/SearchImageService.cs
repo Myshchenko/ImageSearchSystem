@@ -10,7 +10,7 @@ namespace ImageSearchSystem.Services
 
         public List<Image> FindImagesByFileSize(ImageSize parameter);
 
-        public List<Image> FindImagesByFileResolution(string width, string height);
+        public List<Image> FindImagesByFileResolution(ImageResolution imageResolution);
 
         public List<Image> FindImagesByFileExtension(string fileExtension);
 
@@ -19,13 +19,13 @@ namespace ImageSearchSystem.Services
 
     public class SearchImageService : ISearchImageService
     {
-        private readonly List<Image> _imagesAsImages;
+        private readonly List<Image> _imagesList;
 
         private string _sourceFolderPath { get; set; }
 
         public SearchImageService()
         {
-            _imagesAsImages = new List<Image>();
+            _imagesList = new List<Image>();
             _sourceFolderPath = string.Empty;
         }
 
@@ -45,7 +45,7 @@ namespace ImageSearchSystem.Services
                     {
                         Image image = Image.FromStream(ms);
 
-                        _imagesAsImages.Add(image);
+                        _imagesList.Add(image);
                     }
                 }
             }
@@ -94,19 +94,29 @@ namespace ImageSearchSystem.Services
             }
         }
 
-        public List<Image> FindImagesByFileResolution(string width, string height)
+        public List<Image> FindImagesByFileResolution(ImageResolution imageResolution)
         {
-            if (string.IsNullOrEmpty(width) || string.IsNullOrEmpty(height))
+            var images = new List<Image>();
+
+            foreach (var item in _imagesList)
             {
-                return new List<Image>();
+                switch (imageResolution)
+                {
+                    case ImageResolution.Small:
+                        if (item.Height <= 256 || item.Width <=256) images.Add(item);
+                        break;
+                    case ImageResolution.Medium:
+                        if ((item.Height > 256 || item.Width > 256) && (item.Height <= 999 || item.Width <= 999)) images.Add(item);
+                        break;
+                    case ImageResolution.Big:
+                        if (item.Height >= 1000 || item.Width >= 1000) images.Add(item);
+                        break;
+                    default:
+                        break;
+                }
             }
 
-            if(!width.All(Char.IsDigit) || !height.All(Char.IsDigit))
-            {
-                return new List<Image>();
-            }
-
-            return _imagesAsImages.Where(image => image.Height == Convert.ToInt32(height) && image.Width == Convert.ToInt32(width)).ToList();
+            return images;
         }
 
         public List<Image> FindImagesByFileExtension(string fileExtension)
@@ -123,14 +133,14 @@ namespace ImageSearchSystem.Services
                 return new List<Image>();
             }
 
-            return _imagesAsImages.Where(x => x.RawFormat.Equals(imageFormat)).ToList();
+            return _imagesList.Where(x => x.RawFormat.Equals(imageFormat)).ToList();
         }
 
         public List<Image> FindImagesByNumberOfColors(PossibleNumberOfColors possibleNumberOfColors)
         {
             var images = new List<Image>();
 
-            foreach (var item in _imagesAsImages)
+            foreach (var item in _imagesList)
             {
                 var color = GetUniqueColorCount(item);
 
