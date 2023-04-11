@@ -169,8 +169,6 @@ namespace ImageSearchSystem.Services
             {
                 case "bmp":
                     return ImageFormat.Bmp;
-                case "gif":
-                    return ImageFormat.Gif;
                 case "jpeg":
                 case "jpg":
                     return ImageFormat.Jpeg;
