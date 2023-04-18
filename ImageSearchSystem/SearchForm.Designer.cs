@@ -1,4 +1,6 @@
-﻿namespace ImageSearchSystem
+﻿using System.Windows.Forms;
+
+namespace ImageSearchSystem
 {
     partial class SearchForm
     {

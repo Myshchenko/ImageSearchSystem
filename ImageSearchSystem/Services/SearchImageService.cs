@@ -1,6 +1,10 @@
 ﻿using ImageSearchSystem.Models;
-using Microsoft.Extensions.Configuration;
 using System.Drawing.Imaging;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 
 namespace ImageSearchSystem.Services
 {
