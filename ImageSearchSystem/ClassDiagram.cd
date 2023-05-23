@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Comment CommentText="Інтерфейс ISearchImageService використовується для декларації методів, які мають бути реалізовані класом SearchImageService: пошук картинок за параметрами та завантаження картинок у систему. Його використання також сприяє послабленню залежностей між SearchImageService і SearchForm.">
+    <Position X="3.79" Y="0.522" Height="1.686" Width="2.402" />
+  </Comment>
+  <Comment CommentText="Клас SearchImageService відповідає за всю основну логіку програми. Оскільки він реалізовує інтерфейс, то має всі основні методи для роботи з графічними об'єктами. Має у собі список із зображеннями для обробки і рядок для зберігання шляху до директорії з цими ж зображеннями. Це спряє гнучкості програми і дозволяє змінювати джерело завантаження зображень. Приватні методи виконують допоміжну роботу для пошуку зображень. Вони виділені в окремі частини коду задля того, щоб сприяти правилу єдиної відповідальності для методів і самого сервісу.">
+    <Position X="4.105" Y="2.854" Height="3.55" Width="2.15" />
+  </Comment>
+  <Comment CommentText="Набір класів-переліків параметрів для пошуку зображень. Розділені за категоріями - пошук за розміром зображення (ImsgeSize), пошук за можливою кількістю кольорів на зображенні (PossibleNumberOfColors), пошук за розширенням файлу (ImageResolution). SearchParameter надає можливість визначити, за яким параметром буде проводитися пошук.">
+    <Position X="10.374" Y="0.513" Height="2.929" Width="2.258" />
+  </Comment>
+  <Comment CommentText="Клас, що контролює інтерфейс користувача. Має у собі всі інструменти з форми, відстежує події та слідкую за ресурсами програми.">
+    <Position X="10.527" Y="4.069" Height="1.497" Width="2.141" />
+  </Comment>
+  <Comment CommentText="Головний клас програми. Контролює точку старту програми, визначає стартові налаштування класів.">
+    <Position X="8.862" Y="6.122" Height="0.633" Width="2.798" />
+  </Comment>
+  <Class Name="ImageSearchSystem.SearchForm">
+    <Position X="6.75" Y="4" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACpBgBAAQCCABAACAAQAAAWCAroDACAgBQA=</HashCode>
+      <FileName>SearchForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImageSearchSystem.Services.SearchImageService">
+    <Position X="0.5" Y="2.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>QAABgIAAAAAABAAAAAQAAAQAAAACAAAAAAFAAAAAAAg=</HashCode>
+      <FileName>Services\SearchImageService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.283" />
+  </Class>
+  <Class Name="ImageSearchSystem.Program" Collapsed="true">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ImageSearchSystem.Services.ISearchImageService">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAQAAAACAAAAAAEAAAAAAAg=</HashCode>
+      <FileName>Services\SearchImageService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ImageSearchSystem.Models.ImageSize">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAABAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\ImageSize.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ImageSearchSystem.Models.PossibleNumberOfColors">
+    <Position X="8.25" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAABAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PossibleNumberOfColors.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ImageSearchSystem.Models.SearchParameter">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAIAAACAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\SearchParameter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ImageSearchSystem.Models.ImageResolution">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAABAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\ImageResolution.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
